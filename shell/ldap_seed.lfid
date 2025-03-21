@@ -90,4 +90,4 @@ objectClass: top
 cn: user6
 sn: user6
 memberOf: cn=prod,ou=groups,dc=example,dc=org
-userPassword: user5
+userPassword: user6
