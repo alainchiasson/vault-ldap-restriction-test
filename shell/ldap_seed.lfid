@@ -1,0 +1,93 @@
+dn: ou=groups,dc=example,dc=org
+objectClass: organizationalunit
+objectClass: top
+ou: groups
+description: groups of users
+
+dn: ou=users,dc=example,dc=org
+objectClass: organizationalunit
+objectClass: top
+ou: users
+description: users
+
+
+dn: cn=dev,ou=groups,dc=example,dc=org
+objectClass: groupofnames
+objectClass: top
+description: testing group for dev
+cn: dev
+member: cn=user1,ou=users,dc=example,dc=org
+member: cn=user2,ou=users,dc=example,dc=org
+member: cn=user3,ou=users,dc=example,dc=org
+
+dn: cn=prod,ou=groups,dc=example,dc=org
+objectClass: groupofnames
+objectClass: top
+description: testing group for prod
+cn: prod
+member: cn=user4,ou=users,dc=example,dc=org
+member: cn=user5,ou=users,dc=example,dc=org
+member: cn=user6,ou=users,dc=example,dc=org
+
+dn: cn=vault,ou=groups,dc=example,dc=org
+objectClass: groupofnames
+objectClass: top
+description: testing vault users.
+cn: vault
+member: cn=user1,ou=users,dc=example,dc=org
+member: cn=user2,ou=users,dc=example,dc=org
+member: cn=user4,ou=users,dc=example,dc=org
+member: cn=user5,ou=users,dc=example,dc=org
+
+
+dn: cn=user1,ou=users,dc=example,dc=org
+objectClass: person
+objectClass: top
+cn: user1
+sn: user1
+memberOf: cn=dev,ou=groups,dc=example,dc=org
+memberOf: cn=vault,ou=groups,dc=example,dc=org
+userPassword: user1
+
+dn: cn=user2,ou=users,dc=example,dc=org
+objectClass: person
+objectClass: top
+cn: user2
+sn: user2
+memberOf: cn=dev,ou=groups,dc=example,dc=org
+memberOf: cn=vault,ou=groups,dc=example,dc=org
+userPassword: user2
+
+dn: cn=user3,ou=users,dc=example,dc=org
+objectClass: person
+objectClass: top
+cn: user3
+sn: user3
+memberOf: cn=dev,ou=groups,dc=example,dc=org
+userPassword: user3
+
+dn: cn=user4,ou=users,dc=example,dc=org
+objectClass: person
+objectClass: top
+cn: user4
+sn: user4
+memberOf: cn=prod,ou=groups,dc=example,dc=org
+memberOf: cn=vault,ou=groups,dc=example,dc=org
+userPassword: user4
+
+dn: cn=user5,ou=users,dc=example,dc=org
+objectClass: person
+objectClass: top
+cn: user5
+sn: user5
+memberOf: cn=prod,ou=groups,dc=example,dc=org
+memberOf: cn=vault,ou=groups,dc=example,dc=org
+userPassword: user5
+
+dn: cn=user6,ou=users,dc=example,dc=org
+objectClass: person
+objectClass: top
+cn: user6
+sn: user6
+memberOf: cn=prod,ou=groups,dc=example,dc=org
+userPassword: user5

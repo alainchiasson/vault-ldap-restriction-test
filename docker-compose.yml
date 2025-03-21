@@ -1,0 +1,27 @@
+   
+services:
+  ldap:
+    image: osixia/openldap
+    ports:
+          - "389:389"
+  vault:
+    image: hashicorp/vault-enterprise:1.19-ent
+    command:
+      [ vault, server,  -dev, -dev-root-token-id, root , -dev-listen-address=0.0.0.0:8200 ]
+    environment:
+      - VAULT_ADDR=http://vault:8200
+      - VAULT_LICENSE=${LIC}
+    ports:
+          - "8200:8200" 
+    links:
+      - ldap
+  shell:
+    build:
+      context: ./shell
+    image: shell
+    environment:
+      - VAULT_ADDR=http://vault:8200
+      - LDAP_ADDR=ldap://ldap:389
+    links:
+      - vault
+      - ldap
