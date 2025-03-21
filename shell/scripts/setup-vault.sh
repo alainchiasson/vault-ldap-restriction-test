@@ -11,15 +11,26 @@ vault login root
 # Enable ldap auth
 vault auth enable ldap
 
-# Login only people in vault group
+# # Login only people in vault group
+# vault write auth/ldap/config url="${LDAP_ADDR}" \
+#   bindpass="admin" \
+#   starttls=false \
+#   userdn="ou=users,dc=example,dc=org" \
+#   groupdn="ou=groups,dc=example,dc=org" \
+#   binddn="cn=admin,dc=example,dc=org" \
+#   userfilter="(&(objectClass=Person)({{.UserAttr}}={{.Username}})(memberOf=cn=vault,ou=groups,dc=example,dc=org))" ;
+#   # Success! Data written to: auth/ldap/config
+
+
+# LDAP Auth config that uses your own user/pass.
 vault write auth/ldap/config url="${LDAP_ADDR}" \
-  bindpass="admin" \
   starttls=false \
+  userattr="CN" \
   userdn="ou=users,dc=example,dc=org" \
   groupdn="ou=groups,dc=example,dc=org" \
   binddn="cn=admin,dc=example,dc=org" \
   userfilter="(&(objectClass=Person)({{.UserAttr}}={{.Username}})(memberOf=cn=vault,ou=groups,dc=example,dc=org))" ;
-  # Success! Data written to: auth/ldap/config
+
 
 # Add User Policies
 vault policy write mng_team_secrets - <<EOF
